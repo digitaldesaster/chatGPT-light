@@ -23,10 +23,6 @@ const Home: NextPage = () => {
   const generateBio = async (e: any) => {
     e.preventDefault();
 
-    if (generatedResponse) {
-      setContext(() => generatedResponse);
-    }
-
     setgeneratedResponse("");
 
     const placeholderValue = "Why is the answer to everything 42?";
@@ -70,6 +66,11 @@ const Home: NextPage = () => {
       const chunkValue = decoder.decode(value);
       setgeneratedResponse((prev) => prev + chunkValue);
     }
+
+    if (generatedResponse) {
+      setContext(generatedResponse);
+    }
+
     scrollToBios();
     setLoading(false);
   };
