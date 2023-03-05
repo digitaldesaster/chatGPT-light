@@ -119,6 +119,14 @@ const Home: NextPage = () => {
               <LoadingDots color="white" style="large" />
             </button>
           )}
+
+          <button
+          className="bg-red-500 rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-red-600 w-full"
+          onClick={() => window.location.reload()}
+        >
+          Reset
+        </button>
+
         </div>
         <Toaster
           position="top-center"
