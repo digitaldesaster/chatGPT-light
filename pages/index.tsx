@@ -10,6 +10,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedResponse, setgeneratedResponse] = useState<String>("");
+  const [context, setContext] = useState<string>("");
 
   const responseRef = useRef<null | HTMLDivElement>(null);
 
@@ -22,18 +23,16 @@ const Home: NextPage = () => {
   const generateBio = async (e: any) => {
     e.preventDefault();
 
-    let context: string = '';
-
     if (generatedResponse) {
-      let context: string = generatedResponse;
+      setContext(generatedResponse);
     }
 
     setgeneratedResponse("");
 
     const placeholderValue = "Why is the answer to everything 42?";
-    let prompt:string = bio.trim().length ? `${bio}` : `${placeholderValue}`;
+    var prompt = bio.trim().length ? `${bio}` : `${placeholderValue}`;
 
-    if (context !='')
+    if (context)
     {
       prompt = prompt + '\n' + 'Context: ' + context
     }
