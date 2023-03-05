@@ -22,7 +22,7 @@ const Home: NextPage = () => {
   const generateBio = async (e: any) => {
     e.preventDefault();
 
-    let context: string = '' as const;
+    let context: string = '';
 
     if (generatedResponse) {
       context = generatedResponse;
@@ -31,9 +31,9 @@ const Home: NextPage = () => {
     setgeneratedResponse("");
 
     const placeholderValue = "Why is the answer to everything 42?";
-    let prompt:string = bio.trim().length ? `${bio}` : `${placeholderValue}` as const;
+    let prompt:string = bio.trim().length ? `${bio}` : `${placeholderValue}`;
 
-    if (context)
+    if (context !='')
     {
       prompt = prompt + '\n' + 'Context: ' + context
     }
