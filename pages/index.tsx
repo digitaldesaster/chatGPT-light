@@ -144,7 +144,7 @@ const Home: NextPage = () => {
               <div
                 className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                 onClick={() => {
-                  navigator.clipboard.writeText(generatedResponse);
+                  navigator.clipboard.writeText(generatedResponse.toString());
                   toast("Bio copied to clipboard", {
                     icon: "✂️",
                   });
