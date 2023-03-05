@@ -22,10 +22,23 @@ const Home: NextPage = () => {
 
   const generateBio = async (e: any) => {
     e.preventDefault();
+
+    var context ="";
+
+    if (generatedResponse) {
+      context = generatedResponse;
+    }
+
     setgeneratedResponse("");
 
     const placeholderValue = "Why is the answer to everything 42?";
-    const prompt = bio.trim().length ? `${bio}` : `${placeholderValue}`;
+    var prompt = bio.trim().length ? `${bio}` : `${placeholderValue}`;
+
+    if (context)
+    {
+      prompt = prompt + '\n' + 'Context: ' + context
+    }
+
 
 
     setLoading(true);
