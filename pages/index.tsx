@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import Footer from "../components/Footer";
-import Github from "../components/GitHub";
 import LoadingDots from "../components/LoadingDots";
 
 const Home: NextPage = () => {
