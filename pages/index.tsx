@@ -25,7 +25,7 @@ const Home: NextPage = () => {
     let context: string = '';
 
     if (generatedResponse) {
-      context = generatedResponse;
+      let context: string = generatedResponse;
     }
 
     setgeneratedResponse("");
