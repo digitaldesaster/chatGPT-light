@@ -24,7 +24,7 @@ const Home: NextPage = () => {
     e.preventDefault();
 
     if (generatedResponse) {
-      setContext(generatedResponse);
+      setContext(() => generatedResponse);
     }
 
     setgeneratedResponse("");
