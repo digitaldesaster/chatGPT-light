@@ -10,7 +10,6 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedResponse, setgeneratedResponse] = useState<String>("");
-  const [context, setContext] = useState<string>("");
 
   const responseRef = useRef<null | HTMLDivElement>(null);
 
@@ -22,6 +21,9 @@ const Home: NextPage = () => {
 
   const generateBio = async (e: any) => {
     e.preventDefault();
+
+
+    const context = generatedResponse;
 
     setgeneratedResponse("");
 
@@ -65,10 +67,6 @@ const Home: NextPage = () => {
       done = doneReading;
       const chunkValue = decoder.decode(value);
       setgeneratedResponse((prev) => prev + chunkValue);
-    }
-
-    if (generatedResponse) {
-      setContext(generatedResponse);
     }
 
     scrollToBios();
