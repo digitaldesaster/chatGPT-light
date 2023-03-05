@@ -149,9 +149,9 @@ const Home: NextPage = () => {
                     icon: "✂️",
                   });
                 }}
-                key={generatedResponse}
+                key={generatedResponse.toString()}
               >
-                <p>{generatedResponse}</p>
+                <p>{generatedResponse.toString()}</p>
               </div>
               </div>
 
