@@ -97,7 +97,7 @@ const Home: NextPage = () => {
             }}
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={"Why is the answert to everything 42?"}
+            placeholder={"Why is the answer to everything 42?"}
           />
 
           {!loading && (
