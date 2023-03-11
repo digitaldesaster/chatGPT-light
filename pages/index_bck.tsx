@@ -121,7 +121,33 @@ const Home: NextPage = () => {
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={"Insert your question here..."}
           />
-          
+          // <div id="buttons" className="flex mb-2">
+          //   {!loading && (
+          //     <button
+          //       className="bg-black rounded-xl text-white font-medium px-4 py-2 hover:bg-black/80 w-full"
+          //       onClick={(e) => {
+          //         setCurrentQuestion(bio);
+          //         generateBio(e);
+          //       }}
+          //     >
+          //       Submit question
+          //     </button>
+          //   )}
+          //   {loading && (
+          //     <button
+          //       className="bg-black rounded-xl text-white font-medium px-4 py-2 hover:bg-black/80 w-full"
+          //       disabled
+          //     >
+          //       <LoadingDots color="white" style="large" />
+          //     </button>
+          //   )}
+          //   <button
+          //   className="bg-red-500 rounded-xl text-white font-medium px-4 py-2 hover:bg-red-600 w-full"
+          //   onClick={() => window.location.reload()}
+          // >
+          //   Reset
+          // </button>
+          // </div>
         </div>
       </main>
     </div>

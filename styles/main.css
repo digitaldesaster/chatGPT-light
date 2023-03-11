@@ -1,0 +1,33 @@
+#parent {
+    height: 100vh;
+}
+
+main {
+    background: #353740;
+    overflow: hidden;
+}
+
+#content-area {
+    overflow: auto;
+}
+
+.question, .answer {
+    color: #d1d5db;
+}
+
+.answer {
+    background: #444654;
+}
+
+textarea {
+    background-color: #40414F !important;
+    color: white !important;
+    border: none;
+}
+
+button:disabled {
+    position: absolute;
+    left: calc(50% - 50px);
+    bottom: 20%;
+    width: 100px;
+}
