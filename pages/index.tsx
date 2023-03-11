@@ -68,12 +68,21 @@ const Home: NextPage = () => {
     if (!question) return (<div></div>)
     return (
       <div key={question.toString()} className="qa-wrapper">
-        <div className="space-y-2 py-2 px-2 question w-full">
-          <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-            {question}
-          </div>
+
+      <div class="flex justify-start mt-8">
+        <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 mr-2">
+          <span class="text-white font-bold text-2xl">Q</span>
         </div>
-        <div className="space-y-2 py-2 px-2 answer w-full">
+        <div class="flex-grow">
+          <p class="text-sm text-gray-500 text-left max-w-2xl">{question}</p>
+        </div>
+      </div>
+
+      <div class="flex justify-end mt-8">
+
+          <p class="text-sm text-gray-500 mr-2 text-right max-w-2xl">
+
+
           {generatedResponse && (
             <>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
@@ -85,47 +94,110 @@ const Home: NextPage = () => {
               </div>
             </>
           )}
+
+
+
+          </p>
+
+        <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 mr-2">
+          <span class="text-white font-bold text-2xl">A</span>
         </div>
+      </div>
+
       </div>
     )
   }
 
   return (
-    <div className="flex mx-auto flex-col items-center" id="parent">
-      <Head>
-        <title>ChatGPT light</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50">
+        <Head>
+          <title>Next.js + TailwindCSS</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <h1 className="sm:text-4xl text-4xl w-full font-bold text-slate-900 text-center text-black">
-          ChatGPT light
-      </h1>
-
-      <main className="flex flex-1 w-full flex-col items-center">
-
-        <div id="content-area" className="flex-1 w-full">
-          {QuestionsAndAnswers(currentQuestion)}
+   <header class="fixed top-0 left-0 right-0 z-10 bg-white shadow-md">
+    <div class="flex items-center justify-between px-4 py-5">
+      <div class="relative flex items-center">
+        <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
+          <span class="text-white font-bold text-2xl">C</span>
         </div>
-
-        <div className="max-w-xl w-full">
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                setCurrentQuestion(e.target.value)
-                generateBio(e);
-              }
-            }}
-            rows={2}
-            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={"Insert your question here..."}
-          />
-          
-        </div>
-      </main>
+        <span class="z-10 ml-16 font-medium text-gray-700 text-2xl">chatGPT</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Home</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">About</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Contact</a>
+      </div>
     </div>
-  );
+  </header>
+
+  <main class="flex w-full flex-1 flex-col justify-start px-20 py-8 pt-16 justify-start">
+
+    <div id="content-area" className="flex-1 w-full">
+      {QuestionsAndAnswers(currentQuestion)}
+    </div>
+
+    {/* Rest of the content goes here */}
+
+
+    <div class="fixed bottom-0 left-0 w-full flex items-end justify-center mb-16">
+    <div class="flex w-3/5 items-center">
+      <textarea
+        class="flex-grow p-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
+        placeholder="Enter your message here"
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setCurrentQuestion(e.target.value)
+            generateBio(e);
+          }
+        }}
+        onInput={(event) => {
+          event.target.rows = 1;
+          const rowsNeeded = Math.ceil(event.target.scrollHeight / 16);
+          if (rowsNeeded <= 6) {
+            event.target.rows = rowsNeeded;
+          } else {
+            event.target.rows = 6;
+            event.target.scrollTop = event.target.scrollHeight;
+          }
+        }}
+      ></textarea>
+      <button class="flex-shrink-0 w-12 h-full rounded-r-md bg-blue-500 hover:bg-blue-600 text-white" type="button">
+        Send
+      </button>
+    </div>
+  </div>
+
+
+
+
+  </main>
+
+
+
+
+
+
+
+
+
+  <footer className="fixed bottom-0 flex h-10 w-full items-center justify-center border-t bg-zinc-50">
+          <a
+            className="flex items-center justify-center gap-2"
+            href="https://replit.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by{' '}
+
+          </a>
+        </footer>
+      </div>
+    )
+
+
 };
 
 export default Home;
