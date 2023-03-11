@@ -74,13 +74,13 @@ const Home: NextPage = () => {
           <span class="text-white font-bold text-2xl">Q</span>
         </div>
         <div class="flex-grow">
-          <p class="text-sm text-gray-500 text-left max-w-2xl">{question}</p>
+          <p class="text-xl text-gray-500 text-left max-w-2xl">{question}</p>
         </div>
       </div>
 
       <div class="flex justify-end mt-8">
 
-          <p class="text-sm text-gray-500 mr-2 text-right max-w-2xl">
+          <p class="text-xl text-gray-500 mr-2 text-right max-w-2xl">
 
 
           {generatedResponse && (
