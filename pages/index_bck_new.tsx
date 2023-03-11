@@ -88,13 +88,9 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div class="flex justify-start mt-8">
+      <div class="flex justify-end mt-8">
 
-      <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 mr-2">
-        <span class="text-white font-bold text-2xl">A</span>
-      </div>
-
-          <p class="text-xl text-gray-500 mr-2 text-left max-w-2xl">
+          <p class="text-xl text-gray-500 mr-2 text-right max-w-2xl">
 
 
           {generatedResponse && (
@@ -113,7 +109,9 @@ const Home: NextPage = () => {
 
           </p>
 
-
+        <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500 mr-2">
+          <span class="text-white font-bold text-2xl">A</span>
+        </div>
       </div>
 
       </div>
@@ -143,9 +141,9 @@ const Home: NextPage = () => {
     </div>
   </header>
 
-  <main class="flex">
+  <main class="flex w-full flex-1 flex-col justify-start px-20 py-8 pt-16 justify-start">
 
-    <div id="content-area">
+    <div id="content-area" class="flex-1 w-7/10">
       {QuestionsAndAnswers(currentQuestion)}
     </div>
 
