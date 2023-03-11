@@ -8,19 +8,25 @@ const Home: NextPage = () => {
   const [bio, setBio] = useState("");
   const [generatedResponse, setgeneratedResponse] = useState<String>("");
   const [currentQuestion, setCurrentQuestion] = useState<String>("");
-  const placeholderValue = "Why is the answer to everything 42?";
+  const placeholderValue = "";
 
   const responseRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBios = () => {
-    if (responseRef.current !== null) {
-      responseRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  if (responseRef.current !== null) {
+    responseRef.current.scrollTop = responseRef.current.scrollHeight;
+  }
+};
+
 
 
   const generateBio = async (e: any) => {
     e.preventDefault();
+
+    if (responseRef.current !== null) {
+      responseRef.current = null;
+    }
+
 
     const context = generatedResponse;
 
@@ -64,15 +70,22 @@ const Home: NextPage = () => {
       done = doneReading;
       const chunkValue = decoder.decode(value);
       setgeneratedResponse((prev) => prev + chunkValue);
+
     }
 
     const lastEle = document.querySelector("#content-area .qa-wrapper:last-child");
     lastEle?.parentElement?.insertBefore(lastEle?.cloneNode(true), lastEle);
 
+    scrollToBios();
     setCurrentQuestion("");
     setLoading(false);
     setBio("");
   };
+
+  function handleSendClick() {
+    setCurrentQuestion(bio);
+    generateBio();
+  }
 
   function QuestionsAndAnswers(question: string) {
     if (!question) return (<div></div>)
@@ -84,7 +97,7 @@ const Home: NextPage = () => {
           <span class="text-white font-bold text-2xl">Q</span>
         </div>
         <div class="flex-grow">
-          <p class="text-xl text-gray-500 text-left max-w-2xl">{question}</p>
+          <p class="text-l text-gray-500 text-left max-w-2xl">{question}</p>
         </div>
       </div>
 
@@ -94,7 +107,7 @@ const Home: NextPage = () => {
         <span class="text-white font-bold text-2xl">A</span>
       </div>
 
-          <p class="text-xl text-gray-500 mr-2 text-left max-w-2xl">
+          <p class="text-l text-gray-500 mr-2 text-left max-w-2xl">
 
 
           {generatedResponse && (
@@ -104,6 +117,7 @@ const Home: NextPage = () => {
                   key={generatedResponse.toString()}
                 >
                   <p>{generatedResponse.toString()}</p>
+
                 </div>
               </div>
             </>
@@ -131,21 +145,23 @@ const Home: NextPage = () => {
     <div class="flex items-center justify-between px-4 py-5">
       <div class="relative flex items-center">
         <div class="absolute top-1/2 transform -translate-y-1/2 left-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-500">
-          <span class="text-white font-bold text-2xl">C</span>
+          <span class="text-white font-bold text-2xl">I</span>
         </div>
-        <span class="z-10 ml-16 font-medium text-gray-700 text-2xl">chatGPT</span>
+        <span class="z-10 ml-14 font-medium text-gray-700 text-2xl">know</span>
       </div>
       <div class="flex items-center space-x-4">
-        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Home</a>
-        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">About</a>
-        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Contact</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Chat</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Search</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">History</a>
+        <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Upload</a>
       </div>
     </div>
   </header>
 
   <main class="flex">
 
-    <div id="content-area">
+  <div id="content-area" class="max-h-56vh overflow-y-auto mb-20">
+
       {QuestionsAndAnswers(currentQuestion)}
     </div>
 
@@ -175,8 +191,17 @@ const Home: NextPage = () => {
             event.target.scrollTop = event.target.scrollHeight;
           }
         }}
+        disabled={loading}
       ></textarea>
-      <button class="flex-shrink-0 w-12 h-full rounded-r-md bg-blue-500 hover:bg-blue-600 text-white" type="button">
+      <button class="flex-shrink-0 w-12 h-full rounded-r-md bg-blue-500 hover:bg-blue-600 text-white" type="button"
+
+      onClick={(e) => {
+          setCurrentQuestion(bio)
+          generateBio(e);
+      }}
+
+
+      >
         Send
       </button>
     </div>

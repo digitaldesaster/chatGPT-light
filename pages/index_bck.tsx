@@ -9,6 +9,14 @@ const Home: NextPage = () => {
   const [generatedResponse, setgeneratedResponse] = useState<String>("");
   const [currentQuestion, setCurrentQuestion] = useState<String>("");
 
+  const responseRef = useRef<null | HTMLDivElement>(null);
+
+ const scrollToBios = () => {
+   if (responseRef.current !== null) {
+     responseRef.current.scrollIntoView({ behavior: "smooth" });
+   }
+ };
+
   const generateBio = async (e: any) => {
     e.preventDefault();
 
