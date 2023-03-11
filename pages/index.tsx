@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import LoadingDots from "../components/LoadingDots";
 
 const Home: NextPage = () => {
@@ -8,6 +8,16 @@ const Home: NextPage = () => {
   const [bio, setBio] = useState("");
   const [generatedResponse, setgeneratedResponse] = useState<String>("");
   const [currentQuestion, setCurrentQuestion] = useState<String>("");
+  const placeholderValue = "Why is the answer to everything 42?";
+
+  const responseRef = useRef<null | HTMLDivElement>(null);
+
+  const scrollToBios = () => {
+    if (responseRef.current !== null) {
+      responseRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
 
   const generateBio = async (e: any) => {
     e.preventDefault();
@@ -16,7 +26,7 @@ const Home: NextPage = () => {
 
     setgeneratedResponse("");
 
-    const placeholderValue = "Why is the answer to everything 42?";
+
     var prompt = bio.trim().length ? `${bio}` : `${placeholderValue}`;
 
     if (context)
@@ -85,7 +95,7 @@ const Home: NextPage = () => {
 
           {generatedResponse && (
             <>
-              <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
+              <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto" ref={responseRef}>
                 <div
                   key={generatedResponse.toString()}
                 >
@@ -144,7 +154,7 @@ const Home: NextPage = () => {
     <div class="flex w-3/5 items-center">
       <textarea
         class="flex-grow p-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-300 resize-none"
-        placeholder="Enter your message here"
+        placeholder={placeholderValue}
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         onKeyDown={(e) => {
