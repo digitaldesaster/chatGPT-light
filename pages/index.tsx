@@ -160,7 +160,7 @@ const Home: NextPage = () => {
 
   <main class="flex">
 
-  <div id="content-area" class="max-h-56vh overflow-y-auto mb-20">
+  <div id="content-area">
 
       {QuestionsAndAnswers(currentQuestion)}
     </div>
